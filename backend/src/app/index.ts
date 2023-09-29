@@ -3,13 +3,12 @@ import * as bodyParser from "body-parser";
 
 import DBConnector from "./db-connector";
 import Config from "./config";
+import ApiRoutes from "./routes/ApiRoutes";
 
 const app = express();
 
 // connect to database
 const connectDatabases = async () => {
-  console.log("connect to", Config.MONGO_URL + Config.FASHION_CLOUD_DB);
-
   await DBConnector.connectMongo(Config.MONGO_URL + Config.FASHION_CLOUD_DB);
 };
 
@@ -26,10 +25,18 @@ const listenPort = (PORT) => {
   );
 };
 
+const errorMiddleware = () => {
+  app.use(errorMiddleware);
+};
+
+// connect to api routes
+app.use("/api", ApiRoutes);
+
 async function start() {
   await connectDatabases();
   await addBodyParser();
   await listenPort(Config.SERVICE_PORT);
+  await errorMiddleware();
 }
 
 export default {
