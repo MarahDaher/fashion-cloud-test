@@ -30,6 +30,8 @@
   <!-- Page content -->
 
   <div class="content_container">
-    <app-product-card></app-product-card>
+    <div *ngFor="let product of productList">
+      <app-product-card [product]="product"></app-product-card>
+    </div>
   </div>
 </div>

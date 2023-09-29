@@ -1,4 +1,4 @@
-<div class="card card--product">
+<div class="card card--product" *ngIf="product">
   <div class="card__image">
     <div class="card__image-option">
       <div class="card__bg-icon-btn">
@@ -7,24 +7,30 @@
     </div>
     <img
       class="card__image-content"
-      src="assets/productImages/jacket.png"
-      alt="Text"
+      [src]="'assets/productImages/' + product.image"
     />
   </div>
   <div class="card__content">
     <div class="card__title">
-      <h4 class="card__title-text">Aurora Blue Shirt</h4>
+      <h4 class="card__title-text">{{ product.name }}</h4>
     </div>
     <div class="flex justify-content-between align-items-center flex-warp">
-      <h5>Aurora</h5>
-      <p-chip label="Jacket" class="jacket-chip"></p-chip>
+      <h5>{{ product.brandName }}</h5>
+      <p-chip
+        [label]="product.category | titlecase"
+        [ngClass]="getChipClass(product.category)"
+      ></p-chip>
     </div>
     <div class="flex justify-content-between align-items-center">
       <i
-        ><h5>Price: <span>500 $</span></h5></i
+        ><h5>
+          Price: <span>{{ product.price }} $</span>
+        </h5></i
       >
       <i>
-        <h5>Stock: <span>500</span></h5>
+        <h5>
+          Stock: <span>{{ product.stock }}</span>
+        </h5>
       </i>
     </div>
   </div>
