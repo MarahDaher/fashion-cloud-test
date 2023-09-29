@@ -2,6 +2,65 @@
 @import "./primng.less";
 
 :root {
-    --theme-default: @primary-bg;
-    --theme-secondary: @primary-color;
+  --theme-default: @primary-bg;
+  --theme-secondary: @primary-color;
+}
+
+.page_container {
+  // Styling the content section in the page
+  .content_container {
+    padding: 1em 0em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+// HEADING
+h3.title {
+  color: @primary-color;
+  font-size: 2em;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px;
+}
+
+// Icons
+.card__bg-icon-btn {
+  cursor: pointer;
+  background: @card-bg;
+  padding: 0.5em;
+  border-radius: 50%;
+}
+
+.card__bg-icon-btn:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+// classes
+.flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-warp {
+  flex-wrap: wrap;
+}
+
+.gap-20 {
+  gap: 20px;
 }

@@ -1,0 +1,13 @@
+<ng-container>
+  <p-dropdown
+    [options]="dropdownOptions"
+    [formControl]="dropdownFormControl"
+    [placeholder]="placeholder"
+    [showClear]="true"
+    (onChange)="onChangeValue(dropdownFormControl.value)"
+    (onClear)="onClearValue($event)"
+    optionLabel="name"
+    optionValue="name"
+    appendTo="body"
+  ></p-dropdown>
+</ng-container>

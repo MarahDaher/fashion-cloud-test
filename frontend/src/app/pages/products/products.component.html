@@ -1,1 +1,35 @@
-<p>products works!</p>
+<div class="page_container">
+  <!-- Page Header -->
+  <div class="flex justify-content-between align-items-center flex-warp">
+    <div class="content_container">
+      <h3 class="title">Products</h3>
+    </div>
+    <div
+      class="flex justify-content-between align-items-center flex-warp gap-20"
+    >
+      <!-- Brand Filter -->
+      <app-dropdown
+        [dropdownOptions]="brandlist"
+        [placeholder]="'Filter by brand'"
+        (optionSelected)="onFilter($event)"
+      ></app-dropdown>
+      <!-- Category Filter -->
+      <app-dropdown
+        [dropdownOptions]="brandlist"
+        [placeholder]="'Filter by Category'"
+        (optionSelected)="onFilter($event)"
+      ></app-dropdown>
+      <!-- Sort Filter -->
+      <app-dropdown
+        [dropdownOptions]="brandlist"
+        [placeholder]="'Sort by price'"
+        (optionSelected)="onFilter($event)"
+      ></app-dropdown>
+    </div>
+  </div>
+  <!-- Page content -->
+
+  <div class="content_container">
+    <app-product-card></app-product-card>
+  </div>
+</div>
