@@ -1,6 +1,7 @@
 export interface IProductFilter {
   brandName?: string;
   category?: string;
+  sort?: string;
 }
 
 export interface IProduct {

@@ -11,7 +11,7 @@ export const getAllProducts = async (
   try {
     const query = Products.find();
 
-    const features = new APIFeatures(query, req.query).filter().sort();
+    const features = new APIFeatures(query, req.query).filter().sort("-stock");
     const results = await features.getQuery().exec();
 
     res.status(200).json({

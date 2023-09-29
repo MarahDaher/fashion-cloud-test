@@ -12,8 +12,9 @@ export class DropdownComponent implements OnInit {
   @Input() dropdownOptions!: DropdownOptionsModel[];
   @Input() placeholder!: string;
 
-  // Outpust
+  // Output
   @Output() optionSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clearSelected: EventEmitter<any> = new EventEmitter<any>();
 
   // Variables
   public selectedOption: any = '';
@@ -24,11 +25,10 @@ export class DropdownComponent implements OnInit {
   ngOnInit(): void {}
 
   public onChangeValue(value: any) {
-    console.log('Dropdown value =', value);
     this.optionSelected.emit(value);
   }
 
-  public onClearValue(event: AnimationEvent) {
-    console.log('Dropdown value Cleared', event);
+  public onClearValue() {
+    this.clearSelected.emit();
   }
 }

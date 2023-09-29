@@ -11,24 +11,27 @@
       <app-dropdown
         [dropdownOptions]="brandlist"
         [placeholder]="'Filter by brand'"
-        (optionSelected)="onFilter($event, 'brandName')"
+        (optionSelected)="onFilter($event, FilterType.BrandName)"
+        (clearSelected)="onClearFilter()"
       ></app-dropdown>
       <!-- Category Filter -->
       <app-dropdown
         [dropdownOptions]="categorylist"
         [placeholder]="'Filter by Category'"
-        (optionSelected)="onFilter($event, 'category')"
+        (optionSelected)="onFilter($event, FilterType.Category)"
+        (clearSelected)="onClearFilter()"
       ></app-dropdown>
       <!-- Sort Filter -->
       <app-dropdown
-        [dropdownOptions]="brandlist"
+        [dropdownOptions]="priceList"
         [placeholder]="'Sort by price'"
-        (optionSelected)="onFilter($event)"
+        (optionSelected)="onFilter($event, FilterType.Price)"
+        (clearSelected)="onClearFilter()"
       ></app-dropdown>
     </div>
   </div>
-  <!-- Page content -->
 
+  <!-- Page content -->
   <div class="content_container">
     <div *ngFor="let product of productList">
       <app-product-card [product]="product"></app-product-card>

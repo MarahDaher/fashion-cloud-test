@@ -7,6 +7,12 @@ import {
   IProductFilter,
 } from '@app/shared/models/products/products.model';
 
+enum FilterType {
+  BrandName = 'brandName',
+  Category = 'category',
+  Price = 'price',
+}
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -46,29 +52,28 @@ export class ProductsComponent implements OnInit {
     },
   ];
 
-  public productList: IProduct[] = [];
+  public priceList: DropdownOptionsModel[] = [
+    {
+      id: '1',
+      value: 'asc',
+      name: 'Ascending',
+    },
+    {
+      id: '2',
+      value: 'desc',
+      name: 'Descending',
+    },
+  ];
 
+  public productList: IProduct[] = [];
+  public FilterType = FilterType;
   constructor(private productSrv: ProductsService) {}
 
   ngOnInit(): void {
     this.getAllProducts();
   }
 
-  public onFilter(value: any, type?: string) {
-    const queryParams: IProductFilter = {};
-    switch (type) {
-      case 'brandName':
-        queryParams.brandName = value;
-        break;
-      case 'category':
-        queryParams.category = value;
-        break;
-      default:
-        break;
-    }
-    this.getAllProducts(queryParams);
-  }
-
+  // Private method to fetch products based on filter criteria.
   private getAllProducts(productFilter?: IProductFilter) {
     this.productSrv.getAllProducts(productFilter).subscribe({
       next: (res) => {
@@ -78,5 +83,38 @@ export class ProductsComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  // Public method to apply filters based on filter type and value.
+  public onFilter(value: any, type?: FilterType) {
+    let queryParams: IProductFilter = {};
+    switch (type) {
+      case FilterType.BrandName:
+        queryParams.brandName = value;
+        break;
+      case FilterType.Category:
+        queryParams.category = value;
+        break;
+      case FilterType.Price:
+        queryParams.sort = this.getSortQuery(value);
+        break;
+      default:
+        // Clear all filters if the filter type is not recognized.
+        queryParams = {};
+        break;
+    }
+    // Fetch products with the applied filter.
+    this.getAllProducts(queryParams);
+  }
+
+  // Private method to generate a sorting query.
+  private getSortQuery(value: string): string {
+    const sortField: string = 'price';
+    const sortOrder: string = value === 'desc' ? '-' : '';
+    return sortOrder + sortField;
+  }
+  // Public method to clear all filters and fetch all products.
+  public onClearFilter() {
+    this.getAllProducts();
   }
 }
