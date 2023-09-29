@@ -18,6 +18,13 @@ export class ProductsService {
     productFilter?: IProductFilter
   ): Observable<IResponse<IProduct[]>> {
     let httpParams = new HttpParams();
+    if (productFilter) {
+      for (const [key, value] of Object.entries(productFilter)) {
+        if (value !== undefined && value !== null) {
+          httpParams = httpParams.set(key, value.toString());
+        }
+      }
+    }
     return this.api.get<IResponse<IProduct[]>>('products', {
       params: httpParams,
     });

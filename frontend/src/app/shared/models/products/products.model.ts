@@ -1,6 +1,6 @@
 export interface IProductFilter {
-  brandName: string;
-  category: string;
+  brandName?: string;
+  category?: string;
 }
 
 export interface IProduct {

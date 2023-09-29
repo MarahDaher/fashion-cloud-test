@@ -11,13 +11,13 @@
       <app-dropdown
         [dropdownOptions]="brandlist"
         [placeholder]="'Filter by brand'"
-        (optionSelected)="onFilter($event)"
+        (optionSelected)="onFilter($event, 'brandName')"
       ></app-dropdown>
       <!-- Category Filter -->
       <app-dropdown
-        [dropdownOptions]="brandlist"
+        [dropdownOptions]="categorylist"
         [placeholder]="'Filter by Category'"
-        (optionSelected)="onFilter($event)"
+        (optionSelected)="onFilter($event, 'category')"
       ></app-dropdown>
       <!-- Sort Filter -->
       <app-dropdown

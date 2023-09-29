@@ -21,9 +21,7 @@ export class DropdownComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.dropdownOptions);
-  }
+  ngOnInit(): void {}
 
   public onChangeValue(value: any) {
     console.log('Dropdown value =', value);
