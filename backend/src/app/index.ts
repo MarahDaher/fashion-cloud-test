@@ -1,11 +1,12 @@
 import express from "express";
+import cors from "cors";
 import * as bodyParser from "body-parser";
-
 import DBConnector from "./db-connector";
 import Config from "./config";
 import ApiRoutes from "./routes/ApiRoutes";
 
 const app = express();
+app.use(cors());
 
 // connect to database
 const connectDatabases = async () => {

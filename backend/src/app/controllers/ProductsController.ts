@@ -15,7 +15,7 @@ export const getAllProducts = async (
     const results = await features.getQuery().exec();
 
     res.status(200).json({
-      status: "success",
+      status: true,
       result: results.length,
       data: results,
     });
