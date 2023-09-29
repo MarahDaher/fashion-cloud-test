@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TitleResolver } from './shared/resolver/title.resolver';
+import { ProductsComponent } from './products.component';
+import { TitleResolver } from '@app/shared/resolver/title.resolver';
 
 const routes: Routes = [
   {
@@ -9,13 +10,12 @@ const routes: Routes = [
     data: {
       title: 'Products',
     },
-    loadChildren: () =>
-      import('./pages/products/products.module').then((m) => m.ProductsModule),
+    component: ProductsComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class ProductsRoutingModule {}
