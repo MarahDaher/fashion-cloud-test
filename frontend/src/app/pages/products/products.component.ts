@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from '@app/services/loading.service';
 import { ProductsService } from '@app/services/products/products.service';
 import { DropdownOptionsModel } from '@app/shared/models/dropdown/dropdown.model';
 import {
@@ -55,66 +56,89 @@ export class ProductsComponent implements OnInit {
   public priceList: DropdownOptionsModel[] = [
     {
       id: '1',
-      value: 'asc',
+      value: 'price',
       name: 'Ascending',
     },
     {
       id: '2',
-      value: 'desc',
+      value: '-price',
       name: 'Descending',
     },
   ];
 
   public productList: IProduct[] = [];
+  public filterParams!: IProductFilter;
+
+  //Filter options
   public FilterType = FilterType;
-  constructor(private productSrv: ProductsService) {}
+  private brandName: string | undefined;
+  private category: string | undefined;
+  private sort: string | undefined;
+
+  constructor(
+    private productSrv: ProductsService,
+    private loader: LoadingService
+  ) {}
 
   ngOnInit(): void {
+    this.loader.show();
     this.getAllProducts();
   }
 
-  // Private method to fetch products based on filter criteria.
-  private getAllProducts(productFilter?: IProductFilter) {
+  private getAllProducts() {
+    const productFilter = this.getCurrentFilterParams();
     this.productSrv.getAllProducts(productFilter).subscribe({
       next: (res) => {
         this.productList = res.data;
+        this.loader.hide();
       },
       error: (error: HttpErrorResponse) => {
         console.log(error);
+        this.loader.hide();
       },
     });
   }
 
   // Public method to apply filters based on filter type and value.
   public onFilter(value: any, type?: FilterType) {
-    let queryParams: IProductFilter = {};
+    this.loader.show();
     switch (type) {
       case FilterType.BrandName:
-        queryParams.brandName = value;
+        this.brandName = value;
         break;
       case FilterType.Category:
-        queryParams.category = value;
+        this.category = value;
         break;
       case FilterType.Price:
-        queryParams.sort = this.getSortQuery(value);
+        this.sort = value;
         break;
       default:
         // Clear all filters if the filter type is not recognized.
-        queryParams = {};
+        this.onClearFilter();
         break;
     }
     // Fetch products with the applied filter.
-    this.getAllProducts(queryParams);
+    this.getAllProducts();
   }
 
-  // Private method to generate a sorting query.
-  private getSortQuery(value: string): string {
-    const sortField: string = 'price';
-    const sortOrder: string = value === 'desc' ? '-' : '';
-    return sortOrder + sortField;
-  }
-  // Public method to clear all filters and fetch all products.
-  public onClearFilter() {
+  private onClearFilter() {
+    this.brandName = undefined;
+    this.category = undefined;
+    this.sort = undefined;
     this.getAllProducts();
+  }
+
+  private getCurrentFilterParams(): IProductFilter {
+    const queryParams: IProductFilter = {};
+    if (this.brandName) {
+      queryParams.brandName = this.brandName;
+    }
+    if (this.category) {
+      queryParams.category = this.category;
+    }
+    if (this.sort) {
+      queryParams.sort = this.sort;
+    }
+    return queryParams;
   }
 }
