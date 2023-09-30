@@ -4,15 +4,10 @@ import { LoadingService } from '@app/services/loading.service';
 import { ProductsService } from '@app/services/products/products.service';
 import { DropdownOptionsModel } from '@app/shared/models/dropdown/dropdown.model';
 import {
+  FilterTypeEnum,
   IProduct,
   IProductFilter,
 } from '@app/shared/models/products/products.model';
-
-enum FilterType {
-  BrandName = 'brandName',
-  Category = 'category',
-  Price = 'price',
-}
 
 @Component({
   selector: 'app-products',
@@ -70,7 +65,7 @@ export class ProductsComponent implements OnInit {
   public filterParams!: IProductFilter;
 
   //Filter options
-  public FilterType = FilterType;
+  public FilterType = FilterTypeEnum;
   private brandName: string | undefined;
   private category: string | undefined;
   private sort: string | undefined;
@@ -100,16 +95,16 @@ export class ProductsComponent implements OnInit {
   }
 
   // Public method to apply filters based on filter type and value.
-  public onFilter(value: any, type?: FilterType) {
+  public onFilter(value: any, type?: FilterTypeEnum) {
     this.loader.show();
     switch (type) {
-      case FilterType.BrandName:
+      case FilterTypeEnum.BrandName:
         this.brandName = value;
         break;
-      case FilterType.Category:
+      case FilterTypeEnum.Category:
         this.category = value;
         break;
-      case FilterType.Price:
+      case FilterTypeEnum.Price:
         this.sort = value;
         break;
       default:

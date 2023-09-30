@@ -14,7 +14,7 @@ export class LoadingService {
   hide() {
     setTimeout(() => {
       this.isLoading.next(false);
-    }, 500);
+    }, 200);
   }
 
   getLoadingState() {

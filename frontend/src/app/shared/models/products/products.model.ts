@@ -17,3 +17,9 @@ export interface IProduct {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum FilterTypeEnum {
+  BrandName = 'brandName',
+  Category = 'category',
+  Price = 'price',
+}

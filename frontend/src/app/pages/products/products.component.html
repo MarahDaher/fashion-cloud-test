@@ -30,8 +30,16 @@
 
   <!-- Page content -->
   <div class="content_container">
-    <div *ngFor="let product of productList">
-      <app-product-card [product]="product"></app-product-card>
+    <!-- Check if productList is empty and show a message if it is -->
+    <div *ngIf="productList.length === 0; else productItems">
+      <p>No products available!</p>
     </div>
+
+    <!-- Display products using ngFor if productList is not empty -->
+    <ng-template #productItems>
+      <div *ngFor="let product of productList">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </ng-template>
   </div>
 </div>
