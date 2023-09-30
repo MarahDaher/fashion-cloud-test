@@ -2,7 +2,9 @@
   <!-- Page Header -->
   <div class="flex justify-content-between align-items-center flex-warp">
     <div class="content_container">
-      <h3 class="title">Products</h3>
+      <h3 class="title">
+        Products - <small *ngIf="productList">({{ productList.length }})</small>
+      </h3>
     </div>
     <div
       class="flex justify-content-between align-items-center flex-warp gap-20"

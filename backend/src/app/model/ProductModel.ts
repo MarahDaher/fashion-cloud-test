@@ -5,7 +5,7 @@ export interface IProduct extends Document {
   gtin: number;
   name: string;
   image?: string;
-  brand: string;
+  brandName: string;
   category: string;
   color: string;
   stock: number;
@@ -17,7 +17,7 @@ const ProductSchema = new mongoose.Schema<IProduct>(
     gtin: { type: Number, required: true },
     name: { type: String, required: true },
     image: { type: String },
-    brand: { type: String, required: true },
+    brandName: { type: String, required: true },
     category: { type: String, required: true },
     color: { type: String, required: true },
     stock: { type: Number, required: true },

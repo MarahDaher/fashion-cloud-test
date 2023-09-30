@@ -1,4 +1,4 @@
-import ProductRepository from "./../repositories/ProductsRepository";
+import ProductRepository from "../repositres/ProductsRepository";
 
 class ProductService {
   //typeof ProductRepository is used as the type of the repository property.

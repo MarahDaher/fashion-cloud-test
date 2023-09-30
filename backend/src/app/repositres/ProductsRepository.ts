@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
-import Products, { IProduct } from "./../model/ProductModel";
-import APIFeatures from "./../utils/APIFeatures";
+import Products, { IProduct } from "../model/ProductModel";
+import APIFeatures from "../utils/APIFeatures";
 
 class ProductRepository {
   private model: Model<IProduct>;
