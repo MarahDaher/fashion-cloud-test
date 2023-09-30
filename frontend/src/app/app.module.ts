@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderModule } from './shared/components/loader/loader.module';
+import { HttpInterceptorModule } from './shared/interceptores/http-interceptors.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,6 +15,7 @@ import { LoaderModule } from './shared/components/loader/loader.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpInterceptorModule,
     LoaderModule,
   ],
   providers: [],
