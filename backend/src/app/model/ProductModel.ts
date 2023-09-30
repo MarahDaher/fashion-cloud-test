@@ -1,7 +1,7 @@
 import mongoose, { Document, Model } from "mongoose";
 
 // Define the schema
-interface IProduct extends Document {
+export interface IProduct extends Document {
   gtin: number;
   name: string;
   image?: string;

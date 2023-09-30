@@ -1,7 +1,6 @@
-import APIFeatures from "./../utils/APIFeatures";
-import Products from "./../model/ProductModel";
 import { NextFunction, Request, Response } from "express";
 import ErrorResponseException from "../exceptions/ErrorResponseException";
+import ProductService from "./../services/ProductsService";
 
 export const getAllProducts = async (
   req: Request,
@@ -9,10 +8,7 @@ export const getAllProducts = async (
   next: NextFunction
 ) => {
   try {
-    const query = Products.find();
-
-    const features = new APIFeatures(query, req.query).filter().sort("stock");
-    const results = await features.getQuery().exec();
+    const results = await ProductService.getAllProducts(req.query);
 
     res.status(200).json({
       status: "success",
