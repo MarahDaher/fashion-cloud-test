@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderModule } from './shared/components/loader/loader.module';
+import { ToastModule } from 'primeng/toast';
 import { HttpInterceptorModule } from './shared/interceptores/http-interceptors.module';
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { HttpInterceptorModule } from './shared/interceptores/http-interceptors.
     HttpClientModule,
     HttpInterceptorModule,
     LoaderModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

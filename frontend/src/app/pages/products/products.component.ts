@@ -88,7 +88,10 @@ export class ProductsComponent implements OnInit {
         this.loader.hide();
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error);
+        console.log(error.message);
+        this.loader.hide();
+      },
+      complete: () => {
         this.loader.hide();
       },
     });
