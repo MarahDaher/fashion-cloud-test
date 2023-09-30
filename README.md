@@ -26,7 +26,7 @@ In the back-end portion of this project, we have employed Express, a popular web
 
 To store and manage data, we have integrated MongoDB as our database solution. This combination of technologies ensures efficient data handling and processing on the server-side, further contributing to the overall performance and functionality of our e-commerce platform.
 
-# Back-end Development server
+## Back-end Development server
 
 To set up the back-end development server:
 
